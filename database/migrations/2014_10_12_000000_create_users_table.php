@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +16,23 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 50);
+            $table->string('first_surname', 50);
+            $table->string('second_surname', 50)->nullable();
+            $table->string('photo');
+            $table->string('phone', 20);
             $table->string('email')->unique();
+            $table->foreignIdFor(Role::class)
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade')
+                ->default(3);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

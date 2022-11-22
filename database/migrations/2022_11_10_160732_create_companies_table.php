@@ -20,7 +20,7 @@ class CreateCompaniesTable extends Migration
             $table->string('address');
             $table->double('address_latitude');
             $table->double('address_longitude');
-            $table->time('chech_in_time');
+            $table->time('check_in_time');
             $table->time('check_out_time_fulltime')->nullable();
             $table->time('check_out_time_part_time')->nullable();
             $table->unsignedSmallinteger('minutes_late')->nullable();
