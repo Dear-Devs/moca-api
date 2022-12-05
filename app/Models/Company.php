@@ -22,4 +22,20 @@ class Company extends Model
         'check_out_time_part_time',
         'minutes_late'
     ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
 }

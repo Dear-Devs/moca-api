@@ -155,12 +155,19 @@ class AuthController extends Controller
 
     public function userProfile(Request $request)
     {
+        $user = $request->user();
+
+        $user->role = $user->role->first();
+        $user->employee = $user->employee->first();
+        $user->employeeStatus = $user->employee->employeeStatus->first();
+        $user->company = $user->employee->company->first();
+
         try
         {
             $this->setJsonResponse(
                 true,
                 self::GENERIC_MESSAGES['success'],
-                $request->user()
+                $user
             );
         }
         catch(Throwable $t)
